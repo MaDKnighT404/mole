@@ -25,7 +25,7 @@ export const ControlPanel = () => {
         className="border-2 rounded-md p-2"
         onClick={handlerChangeGameStatus}
       >
-        {gameStatus} the game
+        {gameStatus === "pause" ? "Start" : "Pause"} the game
       </button>
     </div>
   );
