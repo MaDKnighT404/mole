@@ -1,13 +1,15 @@
+import { useBoardStore } from "../board/store/board-store";
 import { useScoreStore } from "../score/store/score-store";
 import { useControlPanelStore } from "./store/control-panel-store";
 
 export const ControlPanel = () => {
-  const { reset: resetScore } = useScoreStore();
-  const { gameStatus } = useControlPanelStore();
-  const { changeGameStatus } = useControlPanelStore();
+  const { resetScore } = useScoreStore();
+  const { resetBoard } = useBoardStore();
+  const { gameStatus, changeGameStatus } = useControlPanelStore();
 
   const handleResetScore = () => {
     resetScore();
+    resetBoard();
     changeGameStatus("pause");
   };
 
@@ -21,10 +23,7 @@ export const ControlPanel = () => {
       <button className="border-2 rounded-md p-2" onClick={handleResetScore}>
         Reset Score
       </button>
-      <button
-        className="border-2 rounded-md p-2"
-        onClick={handlerChangeGameStatus}
-      >
+      <button className="border-2 rounded-md p-2" onClick={handlerChangeGameStatus}>
         {gameStatus === "pause" ? "Start" : "Pause"} the game
       </button>
     </div>
