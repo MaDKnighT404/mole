@@ -2,12 +2,14 @@ import { create } from "zustand";
 
 type ScoreStore = {
   score: number;
-  increment: () => void;
-  reset: () => void;
+  incrementScore: () => void;
+  decrementScore: () => void;
+  resetScore: () => void;
 };
 
 export const useScoreStore = create<ScoreStore>()((set) => ({
   score: 0,
-  increment: () => set((state) => ({ score: state.score + 1 })),
-  reset: () => set(() => ({ score: 0 })),
+  incrementScore: () => set((state) => ({ score: state.score + 1 })),
+  decrementScore: () => set((state) => ({ score: state.score === 0 ? 0 : state.score - 1 })),
+  resetScore: () => set(() => ({ score: 0 })),
 }));
